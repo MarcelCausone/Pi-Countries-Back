@@ -3,13 +3,19 @@ const { Sequelize } = require("sequelize"); // ORM que se está utilizando para 
 
 const fs = require("fs");
 const path = require("path");
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DATABASE_URL } = process.env;
 const CountryModel = require("./models/Country");
 const ActivityModel = require("./models/Activity");
 
-const sequelize = new Sequelize( //Creación de la conexión a la base de datos
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries`,
-  {
+// const sequelize = new Sequelize( //Creación de la conexión a la base de datos
+//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries`,
+//   {
+//     logging: false,
+//     native: false,
+//   }
+// );
+
+const sequelize = new Sequelize(DATABASE_URL,{
     logging: false,
     native: false,
   }
